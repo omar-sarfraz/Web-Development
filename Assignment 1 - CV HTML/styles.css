@@ -1,0 +1,282 @@
+body {
+  padding: 2rem 0;
+  margin: 0;
+  background-color: lightgray;
+  font-family: sans-serif;
+}
+
+.main {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.cv {
+  background-color: #e9e7ea;
+  width: 900px;
+  padding: 2rem;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  overflow: hidden;
+}
+
+.divider {
+  display: flex;
+  margin: 1rem 0;
+}
+
+.width30 {
+  width: 30%;
+}
+
+.width70 {
+  width: 70%;
+}
+
+.width95 {
+  width: 95%;
+}
+
+.name {
+  font-family: "Times New Roman", Times, serif;
+  margin-bottom: -2.5rem;
+}
+
+.name .short {
+  position: relative;
+  bottom: -18px;
+  font-size: 5rem;
+  margin: 0 0 0 1rem;
+  color: white;
+  padding-top: 1rem;
+}
+
+.name .full {
+  position: relative;
+  margin: 0;
+  top: -30px;
+  font-size: 3.5rem;
+  color: black;
+}
+
+.name .full span {
+  display: block;
+}
+
+.name .shortMain {
+  position: relative;
+  background-color: #c8d2d7;
+  width: 100%;
+}
+
+.name .fullMain {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.contact {
+  padding: 1rem 0;
+  border-left: 2px solid black;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  letter-spacing: 4px;
+  font-size: 0.8rem;
+}
+
+.role {
+  letter-spacing: 6px;
+  font-weight: 600;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  color: gray;
+}
+
+.contactInfo span {
+  display: block;
+  font-weight: 700;
+  color: gray;
+  margin-bottom: 0.4rem;
+}
+
+.contactInfo {
+  border-right: 7px solid #c8d2d7;
+}
+
+.profile {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.education {
+  border-right: 2px solid black;
+}
+
+.education P {
+  margin: 0.2rem 0;
+  font-size: 0.9rem;
+  color: gray;
+}
+
+.education > div > div {
+  margin-bottom: 3rem;
+}
+
+.heading {
+  letter-spacing: 4px;
+}
+
+.subheading {
+  letter-spacing: 2px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: black !important;
+}
+
+.skills ul {
+  padding-left: 0.9rem;
+}
+
+.skills ::marker {
+  color: black;
+}
+
+.skills li {
+  margin: 0.2rem 0;
+  font-size: 0.9rem;
+  color: gray;
+  margin-top: 0.7rem;
+}
+
+.experience {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.company {
+  color: gray !important;
+}
+
+.experience h4,
+h3 {
+  margin: 0.4rem 0;
+}
+
+.experience > div > div {
+  margin-bottom: 2.5rem;
+}
+
+.experience h3 {
+  position: relative;
+}
+
+.experience h3::before {
+  content: "●";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  color: #c8d2d7;
+  background-color: #e9e7ea;
+  left: -6.9%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.descriptionPoints {
+  padding-left: 1rem;
+}
+
+@media (max-width: 650px) {
+  body {
+    padding: 0;
+  }
+
+  .cv {
+    padding: 0;
+  }
+
+  .name .short {
+    font-size: 3rem;
+    bottom: -11px;
+  }
+
+  .name .full {
+    font-size: 1.5rem;
+    top: -15px;
+  }
+
+  .contact {
+    font-size: 0.5rem;
+    letter-spacing: 2px;
+  }
+
+  .divider {
+    padding: 0 0.4rem;
+  }
+
+  .role {
+    font-size: 0.6rem;
+    letter-spacing: 3px;
+  }
+
+  .education,
+  .contactInfo P {
+    font-size: 0.6rem;
+  }
+
+  .heading {
+    letter-spacing: 1px;
+    font-size: 0.8rem;
+  }
+
+  p.subheading {
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+  }
+
+  .subheading {
+    font-size: 0.6rem;
+    letter-spacing: 1px;
+  }
+
+  p {
+    font-size: 0.6rem;
+  }
+
+  .education p {
+    font-size: 0.6rem;
+  }
+
+  .skills li {
+    margin: 0.2rem 0;
+    font-size: 0.6rem;
+  }
+
+  .descriptionPoints {
+    font-size: 0.6rem;
+  }
+
+  .width30 {
+    width: 35%;
+  }
+
+  .width70 {
+    width: 65%;
+  }
+
+  .experience h3::before {
+    left: -10%;
+  }
+
+  .experience > div > div {
+    margin-bottom: 1rem;
+  }
+
+  .education > div > div {
+    margin-bottom: 1.5rem;
+  }
+}
