@@ -1,5 +1,6 @@
 .logo {
   border: none;
+  background-color: transparent;
 }
 
 .customnav {
@@ -167,7 +168,7 @@ a:hover {
   width: 100%;
   display: flex;
   justify-content: space-between;
-  padding: 0 1rem;
+  padding: 0.5rem 1rem;
 }
 
 .footer {
