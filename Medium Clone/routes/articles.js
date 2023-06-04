@@ -2,12 +2,10 @@ const express = require("express");
 let router = express.Router();
 let Article = require("../models/Article");
 
-router.get("/article", async (req, res) => {
-  let deals = await Article.find();
-  res.render("articles/index", {
-    deals,
-    pageTitle: "Top Deals Set From Router",
-  });
+let sessionAuth = require("../middlewares/sessionAuth");
+
+router.get("/write", sessionAuth, (req, res) => {
+  res.render("articles/write");
 });
 
 module.exports = router;

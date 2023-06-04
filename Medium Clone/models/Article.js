@@ -2,9 +2,14 @@ const mongoose = require("mongoose");
 
 let modelSchema = mongoose.Schema({
   title: String,
-  owner_id: String,
+  owner_id: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+  },
   cover_img: String,
-  content: [],
+  article: String,
+  category: String,
+  date: { type: String, default: new Date() },
 });
 
 let Model = mongoose.model("Article", modelSchema);
