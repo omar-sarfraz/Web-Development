@@ -1,22 +1,8 @@
-<script>
-  function deleteRecord(element) {
-    let recordId = element.dataset.id;
-
-    $.ajax({
-      method: "delete",
-      url: "/sugarlevel/" + recordId,
-      success: (response) => {
-        window.location.reload();
-      },
-    });
-  }
-</script>
-
 <h1>Sugar Level</h1>
 
 <div class="d-flex flex-column gap-3">
   <% if (haveRecords) { %> <% for( let index = 0; index < records.length; index++ ) { %>
-  <div class="card">
+  <form class="card" method="get" action="/deletesugarlevel/<%= records[index]._id %>">
     <div class="card-header">
       Record No: <%= index+1 %>
       <span class="badge bg-primary">Type: <%= records[index].type %></span>
@@ -24,9 +10,9 @@
     <div class="card-body">
       <h5 class="card-title">Reading: <%= records[index].reading %></h5>
       <p class="card-text">Mood: <%= records[index].mood %></p>
-      <a class="btn btn-danger" data-id="<%= records[index]._id %>" onclick="deleteRecord(this)">Delete</a>
+      <input type="submit" value="Delete" class="btn btn-danger" />
     </div>
-  </div>
+  </form>
   <% } %> <% } else { %>
   <h2>No Records in Database</h2>
   <% } %>

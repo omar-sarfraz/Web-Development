@@ -30,13 +30,12 @@ app.post("/sugarlevel", async (req, res) => {
   res.redirect("/");
 });
 
-app.delete("/sugarlevel/:id", async (req, res) => {
+app.get("/deletesugarlevel/:id", async (req, res) => {
   let id = req.params.id;
 
   await SugarLevel.findByIdAndDelete(id);
 
-  // res.redirect("/");
-  res.send("Done");
+  res.redirect("/");
 });
 
 app.listen(4000, () => {

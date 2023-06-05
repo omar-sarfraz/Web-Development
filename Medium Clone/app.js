@@ -16,7 +16,7 @@ app.use(cookieParser());
 app.use(
   session({
     secret: "My Top Secret String",
-    cookie: { maxAge: 180000 },
+    cookie: { maxAge: 1800000 },
     resave: true,
     saveUninitialized: true,
   })
