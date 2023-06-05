@@ -64,7 +64,7 @@
                 >
 
                 <a href="/logout" class="text-black-100 hover:drop-shadow-xl hover:text-gray-900 rounded-md px-3 py-2 text-md font-medium">Logout</a>
-                <img class="h-12 w-12 flex-none rounded-full bg-gray-50" src="data:image/png;base64,<%= user.profile_img %>" alt="" />
+                <img class="h-12 w-12 flex-none rounded-full bg-gray-50 object-cover" src="data:image/png;base64,<%= user.profile_img %>" alt="" />
                 <% } %>
               </div>
             </div>
@@ -90,7 +90,7 @@
           <a href="/profile" class="text-black-100 hover:drop-shadow-xl hover:text-gray-900 rounded-md px-3 py-2 text-md font-medium">Profile</a>
 
           <a href="/logout" class="text-black-100 hover:drop-shadow-xl hover:text-gray-900 rounded-md px-3 py-2 text-md font-medium">Logout</a>
-          <img class="h-12 w-12 flex-none rounded-full bg-gray-50" src="data:image/png;base64,<%= user.profile_img %>" alt="" />
+          <img class="h-12 w-12 flex-none rounded-full bg-gray-50 object-cover" src="data:image/png;base64,<%= user.profile_img %>" alt="" />
           <% } %>
         </div>
       </div>

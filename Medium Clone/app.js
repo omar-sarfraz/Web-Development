@@ -16,7 +16,7 @@ app.use(cookieParser());
 app.use(
   session({
     secret: "My Top Secret String",
-    cookie: { maxAge: 1800000 },
+    cookie: { maxAge: 600000 },
     resave: true,
     saveUninitialized: true,
   })
@@ -32,6 +32,7 @@ app.get("/", async (req, res) => {
 });
 
 app.use("/", require("./routes/api/articles"));
+app.use("/", require("./routes/api/users"));
 app.use("/", require("./routes/articles"));
 app.use("/", require("./routes/auth"));
 
