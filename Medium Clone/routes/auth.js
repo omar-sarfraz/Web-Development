@@ -74,16 +74,29 @@ router.post("/register", upload.single("image"), async (req, res) => {
   res.redirect("/");
 });
 
-router.get("/profile", sessionAuth, async (req, res) => {
+// router.get("/profile", sessionAuth, async (req, res) => {
+//   //this route should be protected
+
+//   let user_id = req.session.user._id;
+
+//   let articles = await Article.find({ owner_id: user_id });
+
+//   // console.log(articles);
+
+//   res.render("auth/profile", { articles });
+// });
+
+router.get("/profile/:id", async (req, res) => {
   //this route should be protected
+  let user_id = req.params.id;
+  let articles = await Article.find({ owner_id: user_id }).populate("owner_id");
 
-  let user_id = req.session.user._id;
-
-  let articles = await Article.find({ owner_id: user_id });
-
-  // console.log(articles);
-
-  res.render("auth/profile", { articles });
+  res.render("auth/profile", {
+    articles,
+    profile_id: user_id,
+    full_name: articles[0].owner_id.name,
+    user_profile_img: articles[0].owner_id.profile_img,
+  });
 });
 
 router.get("/admin-profile", sessionAuth, admin, async (req, res, next) => {

@@ -23,7 +23,7 @@
 </div>
 
 <!-- List of Trending articles -->
-<div class="bg-white sm:py-6">
+<!-- <div class="bg-white sm:py-6">
   <div class="mx-auto max-w-7xl px-6 lg:px-8">
     <div class="mx-auto max-w-2xl lg:mx-0">
       <p class="mt-2 text-lg leading-8 text-gray-600">Trending On Medium</p>
@@ -38,10 +38,7 @@
         </div>
         <div class="group relative">
           <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
-            <a href="#">
-              <!-- <span class="absolute inset-0"></span> -->
-              Boost your conversion rate
-            </a>
+            <a href="#"> Boost your conversion rate </a>
           </h3>
           <p class="mt-5 line-clamp-3 text-sm leading-6 text-gray-600">
             Illo sint voluptas. Error voluptates culpa eligendi. Hic vel totam vitae illo. Non aliquid explicabo necessitatibus unde. Sed
@@ -56,10 +53,7 @@
           />
           <div class="text-sm leading-6">
             <p class="font-semibold text-gray-900">
-              <a href="#">
-                <!-- <span class="absolute inset-0"></span> -->
-                Michael Foster
-              </a>
+              <a href="#"> Michael Foster </a>
             </p>
             <p class="text-gray-600">Co-Founder / CTO</p>
           </div>
@@ -72,10 +66,7 @@
         </div>
         <div class="group relative">
           <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
-            <a href="#">
-              <!-- <span class="absolute inset-0"></span> -->
-              Boost your conversion rate
-            </a>
+            <a href="#"> Boost your conversion rate </a>
           </h3>
           <p class="mt-5 line-clamp-3 text-sm leading-6 text-gray-600">
             Illo sint voluptas. Error voluptates culpa eligendi. Hic vel totam vitae illo. Non aliquid explicabo necessitatibus unde. Sed
@@ -90,10 +81,7 @@
           />
           <div class="text-sm leading-6">
             <p class="font-semibold text-gray-900">
-              <a href="#">
-                <!-- <span class="absolute inset-0"></span> -->
-                Michael Foster
-              </a>
+              <a href="#"> Michael Foster </a>
             </p>
             <p class="text-gray-600">Co-Founder / CTO</p>
           </div>
@@ -101,7 +89,7 @@
       </article>
     </div>
   </div>
-</div>
+</div> -->
 
 <!-- List of other articles and the categoreis -->
 
@@ -110,9 +98,10 @@
     <div
       class="mx-auto mt-2 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-8 border-gray-200 pt-4 sm:mt-2 sm:pt-2 lg:mx-0 lg:max-w-none lg:grid-cols-1 w-3/5"
     >
-      <% for( let index = 0; index < articles.length; index++ ) { %> <%- include('./components/long-article-card.ejs', { title: articles[index].title,
-      article: articles[index].article, owner_img: articles[index].owner_id.profile_img, owner_name: articles[index].owner_id.name, date:
-      articles[index].date, cover_img: articles[index].cover_img }) %> <% } %>
+      <% for( let index = 0; index < articles.length; index++ ) { %> <%- include('./components/long-article-card.ejs', { id: articles[index]._id,
+      title: articles[index].title, article: articles[index].article, owner_img: articles[index].owner_id.profile_img, owner_name:
+      articles[index].owner_id.name, date: articles[index].date, cover_img: articles[index].cover_img, owner_id:
+      articles[index].owner_id._id.toString() }) %> <% } %>
     </div>
     <div class="bg-white sm:py-6 w-2/5">
       <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600 py-6">
