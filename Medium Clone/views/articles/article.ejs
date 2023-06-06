@@ -36,7 +36,7 @@
       <img src="data:image/png;base64,<%= article.owner_id.profile_img %>" alt="" class="h-10 w-10 rounded-full bg-gray-50" />
       <div class="text-sm leading-6">
         <p class="font-semibold text-gray-900">
-          <a href="#"> <%= article.owner_id.name %> </a>
+          <a href="/profile/<%= article.owner_id._id.toString() %>"> <%= article.owner_id.name %> </a>
         </p>
         <p class="text-sm leading-6 text-slate-400">Author</p>
       </div>
