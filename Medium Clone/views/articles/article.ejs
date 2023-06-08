@@ -2,8 +2,9 @@
   <div class="w-screen max-w-5xl flex-auto overflow-hidden rounded-3xl bg-white text-sm leading-6 shadow-lg ring-1 ring-gray-900/5 py-8 px-10">
     <div class="flex justify-between items-center mb-10">
       <h3 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl"><%= article.title %></h3>
-      <% if (user) { if(user._id === article.owner_id._id.toString()){ %>
+      <% if (user) { if(user._id === article.owner_id._id.toString() || user.isAdmin){ %>
       <div class="flex items-center gap-3">
+        <% if (user._id === article.owner_id._id.toString()) { %>
         <a href="/article/edit/<%= article._id %>" class="flex flex-col items-center">
           <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24">
             <path fill="currentColor" d="m18.988 2.012l3 3L19.701 7.3l-3-3zM8 16h3l7.287-7.287l-3-3L8 13z" />
@@ -14,6 +15,7 @@
           </svg>
           <p class="text-base text-gray-700">Edit</p>
         </a>
+        <% } %>
         <a href="/article/delete/<%= article._id %>" class="flex flex-col items-center">
           <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
             <path

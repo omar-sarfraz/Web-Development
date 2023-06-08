@@ -42,11 +42,14 @@ router.get("/article/delete/:id", sessionAuth, async (req, res) => {
   let owner = article.owner_id;
 
   // console.log("Onwer is", owner);
-
   if (req.session.user._id === owner.toString()) {
     await Article.findByIdAndDelete(req.params.id);
     req.setFlash("Success", "Article Deleted Successfully");
     return res.redirect(`/profile/${req.session.user._id}`);
+  } else if (req.session.user.isAdmin) {
+    await Article.findByIdAndDelete(req.params.id);
+    req.setFlash("Success", "Article Deleted Successfully by Admin");
+    return res.redirect(`/`);
   } else {
     req.setFlash("Error", "Only Owner can delete the article");
     return res.redirect("back");
