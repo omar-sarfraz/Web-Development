@@ -2,7 +2,9 @@
   <div class="flex-col">
     <div class="flex items-center gap-x-4 text-xs">
       <% let dateTime = new Date(date); %> <%= dateTime.toDateString() %>
-      <a href="#" class="relative z-10 rounded-full bg-gray-50 px-3 py-1 font-medium text-gray-600 hover:bg-gray-100">Category</a>
+      <a href="categories/<%= category_id %>/1" class="relative z-10 rounded-full bg-gray-50 px-3 py-1 font-medium text-gray-600 hover:bg-gray-100"
+        ><%= category %></a
+      >
     </div>
     <div class="group relative">
       <h3 class="mt-2 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">

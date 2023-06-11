@@ -6,7 +6,7 @@
     <div class="flex flex-col gap-5 justify-center align-center">
       <h1 class="text-black-100 text-8xl italic">Stay Curious</h1>
       <p class="text-black-100 text-2xl">Discover stories, thinking, and expertise from writers on any topic</p>
-      <a href="#" class="text-white text-xl px-3 py-2 bg-black rounded-full w-40 text-center hover:drop-shadow-xl">Start Reading</a>
+      <a href="/read/1" class="text-white text-xl px-3 py-2 bg-black rounded-full w-40 text-center hover:drop-shadow-xl">Start Reading</a>
     </div>
 
     <div>
@@ -91,39 +91,40 @@
   </div>
 </div> -->
 
-<!-- List of other articles and the categoreis -->
+<!-- List of other articles and the categories -->
 
 <div class="bg-white sm:py-6">
   <div class="mx-auto max-w-7xl px-6 lg:px-8">
     <div class="mx-auto max-w-2xl lg:mx-0 border-b">
       <p class="mt-2 text-lg leading-8 text-gray-600">Trending On Medium</p>
     </div>
+    <% if (!articles.length) { %>
+    <p class="mt-2 text-lg leading-8 text-gray-600">No Articles Found</p>
+    <% } %>
     <div class="flex">
+      <% if (articles.length) { %>
       <div
         class="mx-auto mt-2 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-8 border-gray-200 pt-4 sm:mt-2 sm:pt-2 lg:mx-0 lg:max-w-none lg:grid-cols-1 w-3/5"
       >
         <% for( let index = 0; index < articles.length; index++ ) { %> <%- include('./components/long-article-card.ejs', { id: articles[index]._id,
         title: articles[index].title, article: articles[index].article, owner_img: articles[index].owner_id.profile_img, owner_name:
         articles[index].owner_id.name, date: articles[index].date, cover_img: articles[index].cover_img, owner_id:
-        articles[index].owner_id._id.toString() }) %> <% } %>
+        articles[index].owner_id._id.toString(), category: articles[index].category.name, category_id: articles[index].category._id.toString() }) %>
+        <% } %>
       </div>
+      <% } %> <% if (categories.length) { %>
       <div class="bg-white sm:py-6 w-2/5">
         <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600 py-6">
           <!-- <span class="absolute inset-0"></span> -->
           Discover More of what matters to you
         </h3>
         <div class="flex gap-2 flex-wrap">
-          <a href="#" class="rounded-full px-4 py-1 bg-gray-100">Programming</a>
-          <a href="#" class="rounded-full px-4 py-1 bg-gray-100">Data Science</a>
-          <a href="#" class="rounded-full px-4 py-1 bg-gray-100">Self Improvement</a>
-          <a href="#" class="rounded-full px-4 py-1 bg-gray-100">Technology</a>
-          <a href="#" class="rounded-full px-4 py-1 bg-gray-100">Writing</a>
-          <a href="#" class="rounded-full px-4 py-1 bg-gray-100">Relationships</a>
-          <a href="#" class="rounded-full px-4 py-1 bg-gray-100">Machine Learning</a>
-          <a href="#" class="rounded-full px-4 py-1 bg-gray-100">Productivity</a>
-          <a href="#" class="rounded-full px-4 py-1 bg-gray-100">Politics</a>
+          <% for( let index = 0; index < categories.length; index++ ) { %>
+          <a href="/categories/<%= categories[index]._id.toString() %>/1" class="rounded-full px-4 py-1 bg-gray-100"><%= categories[index].name%></a>
+          <% } %>
         </div>
       </div>
+      <% } %>
     </div>
   </div>
 </div>

@@ -1,15 +1,15 @@
 const express = require("express");
-const User = require("../../models/User");
+const User = require("../models/User");
 
 const multer = require("multer");
 const fs = require("fs");
 const upload = multer({ dest: "uploads/" });
 
-const sessionAuth = require("../../middlewares/sessionAuth");
+const sessionAuth = require("../middlewares/sessionAuth");
 
 let router = express.Router();
 
-router.post("/api/updateuser/:id", sessionAuth, upload.single("image"), async function (req, res) {
+router.post("/user/updateuser/:id", sessionAuth, upload.single("image"), async function (req, res) {
   // console.log(req.params.id);
   let existingRecord = await User.findById(req.params.id);
 
@@ -35,11 +35,5 @@ router.post("/api/updateuser/:id", sessionAuth, upload.single("image"), async fu
     res.redirect("back");
   }
 });
-
-// router.post("/api/deleteuser/:id", sessionAuth, async function (req, res) {
-//   // let record = await User.findByIdAndDelete(req.params.id);
-//   console.log("delete");
-//   res.redirect("/");
-// });
 
 module.exports = router;

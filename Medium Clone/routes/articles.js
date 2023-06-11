@@ -5,17 +5,47 @@ const fs = require("fs");
 let router = express.Router();
 
 let Article = require("../models/Article");
+let Category = require("../models/Category");
 
 const upload = multer({ dest: "uploads/" });
 
 let sessionAuth = require("../middlewares/sessionAuth");
 
-router.get("/write", sessionAuth, (req, res) => {
-  res.render("articles/write");
+router.get("/write", sessionAuth, async (req, res) => {
+  let categories = await Category.find({});
+
+  res.render("articles/write", { categories });
+});
+
+router.get("/read/:pageNo", async (req, res) => {
+  let pageNo = req.params.pageNo;
+
+  let totalRecords = await Article.find().count();
+  let pageSize = 10;
+
+  let totalPages = Math.ceil(totalRecords / pageSize);
+
+  let firstPage = false;
+  let lastPage = false;
+
+  if (pageNo === 1) {
+    firstPage = true;
+  } else if (pageNo === totalPages) {
+    lastPage = true;
+  }
+
+  let articles = await Article.find()
+    .skip((pageNo - 1) * pageSize)
+    .limit(pageSize)
+    .populate("owner_id")
+    .populate("category");
+  let categories = await Category.find({});
+
+  res.render("articles/read", { articles, categories, firstPage, lastPage, totalPages, pageSize, currentPage: parseInt(pageNo), totalRecords });
 });
 
 router.post("/articles", sessionAuth, upload.single("image"), async function (req, res) {
-  // console.log(req.body, req.file);
+  console.log(req.body, req.file);
 
   let image = fs.readFileSync(req.file.path, "base64");
 
@@ -30,7 +60,7 @@ router.post("/articles", sessionAuth, upload.single("image"), async function (re
 });
 
 router.get("/article/:id", async (req, res) => {
-  let article = await Article.findById(req.params.id).populate("owner_id");
+  let article = await Article.findById(req.params.id).populate("owner_id").populate("category");
 
   // console.log(article);
 
@@ -57,11 +87,12 @@ router.get("/article/delete/:id", sessionAuth, async (req, res) => {
 });
 
 router.get("/article/edit/:id", sessionAuth, async (req, res) => {
-  let article = await Article.findById(req.params.id);
+  let article = await Article.findById(req.params.id).populate("category");
+  let categories = await Category.find();
   let owner = article.owner_id;
 
   if (req.session.user._id === owner.toString()) {
-    return res.render("articles/edit", { article });
+    return res.render("articles/edit", { article, categories });
   } else {
     req.setFlash("Error", "Only Owner can edit the article");
     return res.redirect("back");
@@ -83,9 +114,13 @@ router.post("/article/edit/:id", sessionAuth, upload.single("image"), async (req
 
     let record = await Article.findByIdAndUpdate(req.params.id, articleObj, {
       new: true,
-    });
+    }).populate("category");
 
-    let isEqual = record.title === article.title && record.cover_img === article.cover_img && record.article === article.article;
+    let isEqual =
+      record.title === article.title &&
+      record.cover_img === article.cover_img &&
+      record.article === article.article &&
+      record.category._id.toString() === article.category.toString();
 
     // console.log("Equal", isEqual);
     if (!isEqual) {

@@ -5,7 +5,7 @@
     <p class="mt-1 max-w-2xl text-sm leading-6 text-gray-500">Personal details and articles.</p>
   </div>
   <% if (user) { %>
-  <form class="mt-6 border-t border-gray-100" method="POST" action="/api/updateuser/<%= user._id %>" enctype="multipart/form-data">
+  <form class="mt-6 border-t border-gray-100" method="POST" action="/user/updateuser/<%= user._id %>" enctype="multipart/form-data">
     <% } %>
 
     <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
@@ -89,13 +89,13 @@
     </div>
     <% } %> <% if (user) { %>
   </form>
-  <% } %>
-
+  <% } %> <% if (articles.length) { %>
   <div class="border-t border-gray-900/10 mt-12">
     <h3 class="text-2xl font-semibold leading-7 text-gray-900 pt-10">User Articles</h3>
     <% for( let index = 0; index < articles.length; index++ ) { %> <%- include('../components/long-article-card.ejs', { id: articles[index]._id,
     title: articles[index].title, article: articles[index].article, owner_img: articles[index].owner_id.profile_img, owner_name:
-    articles[index].owner_id.name, date: articles[index].date, cover_img: articles[index].cover_img,owner_id: articles[index].owner_id._id.toString()
-    }) %> <% } %>
+    articles[index].owner_id.name, date: articles[index].date, cover_img: articles[index].cover_img,owner_id: articles[index].owner_id._id.toString(),
+    category: articles[index].category.name, category_id: articles[index].category._id.toString() }) %> <% } %>
   </div>
+  <% } %>
 </div>

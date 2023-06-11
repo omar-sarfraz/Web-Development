@@ -8,7 +8,10 @@ let modelSchema = mongoose.Schema({
   },
   cover_img: String,
   article: String,
-  category: String,
+  category: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Category",
+  },
   date: { type: String, default: new Date() },
 });
 

@@ -4,6 +4,7 @@ let expressLayouts = require("express-ejs-layouts");
 let cookieParser = require("cookie-parser");
 let session = require("express-session");
 let Article = require("./models/Article");
+let Category = require("./models/Category");
 
 app.set("view engine", "ejs");
 app.use(express.static("public"));
@@ -26,15 +27,21 @@ app.use(require("./middlewares/isAdmin"));
 app.use(require("./middlewares/checkSession"));
 
 app.get("/", async (req, res) => {
-  let articles = await Article.find().populate("owner_id").limit(10);
+  if (req.session.user) {
+    return res.redirect("/read/1");
+  }
+
+  let articles = await Article.find().populate("owner_id").populate("category").limit(10);
+  let categories = await Category.find();
   // console.log(articles[0]);
-  res.render("homepage", { articles });
+  res.render("homepage", { articles, categories });
 });
 
-app.use("/", require("./routes/api/articles"));
-app.use("/", require("./routes/api/users"));
+app.use("/", require("./routes/users"));
 app.use("/", require("./routes/articles"));
 app.use("/", require("./routes/auth"));
+app.use("/", require("./routes/admin"));
+app.use("/", require("./routes/categories"));
 
 app.listen(3000, () => {
   console.log("Server Started on port 3000");
